@@ -31,8 +31,18 @@ begin
     
     if (data_str <> '') then
     begin
-      var data := Encoding.UTF8.GetBytes(data_str);
-        
+      var url : string := 'http://localhost:8080/' + data_str;
+      var message : string;
+      
+      var request : HttpWebRequest := HttpWebRequest(WebRequest.Create(url));
+      request.Method := 'PUT';
+      
+      var response : WebResponse := request.GetResponse();
+      var sr : StreamReader := new StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8);
+     
+      message := sr.ReadToEnd();
+      response.Close();
+      writeln(message);
     end;
      
   end;
