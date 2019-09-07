@@ -27,11 +27,31 @@ begin
     if (phrase = 'Трапеция') then 
     begin
       data_str := 'trapeze';
+    end
+    else 
+    if (phrase = 'Стоять') then 
+    begin
+      data_str := 'halt';
+    end
+    else 
+    if (phrase = 'Ехать') then 
+    begin
+      data_str := 'go';
+    end
+    else 
+    if (phrase = 'Ручное') then 
+    begin
+      data_str := 'manual';
+    end
+    else 
+    if (phrase = 'Автомат') then 
+    begin
+      data_str := 'auto';
     end;
     
     if (data_str <> '') then
     begin
-      var url : string := 'http://localhost:8080/' + data_str;
+      var url : string := 'http://192.168.1.3:8080/' + data_str;
       var message : string;
       
       var request : HttpWebRequest := HttpWebRequest(WebRequest.Create(url));
@@ -71,7 +91,7 @@ begin
   blocked := false;
   
   OnKeyDown := KeyDown;
-  var Phrases := new string[]('Круг', 'Стоп', 'Трапеция');
+  var Phrases := new string[]('Круг', 'Стоп', 'Трапеция', 'Стоять', 'Ехать', 'Ручное', 'Автомат');
   Ear := new Recognizer(Phrases);
   Ear.OnRecognized := Response;
   
