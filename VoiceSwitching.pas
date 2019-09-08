@@ -16,17 +16,17 @@ begin
     
     if (phrase = 'Круг') then 
     begin
-      data_str := 'circle';
+      data_str := 'circlesign';
     end
     else 
     if (phrase = 'Стоп') then 
     begin
-      data_str := 'stop';
+      data_str := 'stopsign';
     end
     else 
-    if (phrase = 'Трапеция') then 
+    if (phrase = 'Уступи') then 
     begin
-      data_str := 'trapeze';
+      data_str := 'yieldsign';
     end
     else 
     if (phrase = 'Стоять') then 
@@ -51,7 +51,7 @@ begin
     
     if (data_str <> '') then
     begin
-      var url : string := 'http://192.168.1.3:8080/' + data_str;
+      var url : string := 'http://localhost:8080/' + data_str;
       var message : string;
       
       var request : HttpWebRequest := HttpWebRequest(WebRequest.Create(url));
@@ -91,7 +91,7 @@ begin
   blocked := false;
   
   OnKeyDown := KeyDown;
-  var Phrases := new string[]('Круг', 'Стоп', 'Трапеция', 'Стоять', 'Ехать', 'Ручное', 'Автомат');
+  var Phrases := new string[]('Круг', 'Стоп', 'Уступи', 'Стоять', 'Ехать', 'Ручное', 'Автомат');
   Ear := new Recognizer(Phrases);
   Ear.OnRecognized := Response;
   
